@@ -31,8 +31,7 @@ import { CalendarAddEventsComponent } from './components/common/calendarAddEvent
   ],
   imports: [CommonModule, ResizableModule],
   exports: [CalendarMonthViewComponent, CalendarDate],
-  entryComponents: [CalendarTooltipWindowComponent],
-  providers:[]
+  entryComponents: [CalendarTooltipWindowComponent]
 })
 export class CalendarModule {
 

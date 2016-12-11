@@ -68,9 +68,9 @@ export const colors: any = {
 })
 export class CalendarAddEventsComponent {
     
-       
-    //@Output() addClicked: EventEmitter<{day: MonthViewDay}> = new EventEmitter<{day: MonthViewDay}>();
-   addFormIsOpen:boolean = false;
+    constructor( private EvServ: EventsService){}    
+    
+    addFormIsOpen:boolean = false;
 
    @Input() day: MonthViewDay;
 
@@ -90,7 +90,7 @@ export class CalendarAddEventsComponent {
     this.addFormIsOpen = false;
   }
 
-  constructor(private EvServ: EventsService){};
+  
   
 }
 

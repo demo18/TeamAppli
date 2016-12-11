@@ -5,8 +5,6 @@ import { myEvent } from './events'
 @Injectable()
 export class EventsService {
 
-  constructor() { }
-
   getEvents(): myEvent[] {
     return events;
   }
