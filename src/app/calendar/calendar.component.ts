@@ -1,4 +1,4 @@
-import { Component  } from '@angular/core';
+import { Component,OnInit  } from '@angular/core';
 import {
   startOfDay,
   subDays,
@@ -20,22 +20,41 @@ import 'font-awesome/css/font-awesome.css';
 
 import { CalendarAddEventsComponent } from'./components/common/calendarAddEvents.component';
 import { EventsService } from './events.service';
+import { Observable }     from 'rxjs/Observable';
+import { Event } from './event';
 
 @Component({
   selector: 'app-cal',
   templateUrl: './calendar.component.html',
-  styleUrls: ['./calendar.component.css'],
-  providers:[EventsService]
+  styleUrls: ['./calendar.component.css']
 })
-export class CalendarComponent { 
+export class CalendarComponent implements OnInit{ 
 
   constructor( private EvServ: EventsService){}
+
+  ngOnInit() { this.test(); }
+
   viewDate: Date = new Date();
   view: string = 'month';
   events = this.EvServ.getEvents();
+  errorMessage: any;
+
+  eventest:any;
+
+  test(){
+  this.EvServ.getEventsREST().subscribe(
+                       eventest => this.eventest = eventest,
+                       error =>  this.errorMessage = <any>error);
+  //JSON.stringify(this.EvServ.getEventsREST())  
+  console.log(this.eventest);
+    
+  }
+
+
   refresh: Subject<any> = new Subject();
   activeDayIsOpen: boolean = false;
-  
+ 
+
   increment(): void {
 
     const addFn: any = {

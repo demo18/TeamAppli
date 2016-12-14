@@ -1,5 +1,6 @@
 import { NgModule, ModuleWithProviders } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { FormsModule }   from '@angular/forms';
 import { ResizableModule } from 'angular-resizable-element';
 import { CalendarMonthViewComponent } from './components/month/calendarMonthView.component';
 import { CalendarEventActionsComponent } from './components/common/calendarEventActions.component';
@@ -13,6 +14,8 @@ import { CalendarEventTitle as CalendarEventTitleProvider } from './providers/ca
 import { CalendarDateFormatter } from './providers/calendarDateFormatter.provider';
 import { CalendarComponent } from './calendar.component';
 import { CalendarAddEventsComponent } from './components/common/calendarAddEvents.component';
+import { EventsService } from './events.service';
+import { CalendarEventDetailComponent } from './components/common/calendarEventDetail.component';
 
 
 @NgModule({
@@ -27,11 +30,13 @@ import { CalendarAddEventsComponent } from './components/common/calendarAddEvent
     CalendarDate,
     CalendarEventTitlePipe,
     CalendarComponent,
-    CalendarAddEventsComponent
+    CalendarAddEventsComponent,
+    CalendarEventDetailComponent
   ],
-  imports: [CommonModule, ResizableModule],
+  imports: [CommonModule, ResizableModule,FormsModule],
   exports: [CalendarMonthViewComponent, CalendarDate],
-  entryComponents: [CalendarTooltipWindowComponent]
+  entryComponents: [CalendarTooltipWindowComponent],
+  providers:[EventsService]
 })
 export class CalendarModule {
 

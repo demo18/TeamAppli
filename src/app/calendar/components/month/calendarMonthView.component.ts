@@ -51,8 +51,8 @@ import isSameDay from 'date-fns/is_same_day';
             [isOpen]="openRowIndex === rowIndex"
             [events]="openDay?.events"
             [openDay]="openDay"
-            (eventClicked)="eventClicked.emit({event: $event.event})"
-            >
+            [refresh]="refresh"
+            (eventClicked)="eventClicked.emit({event: $event.event})">
           </mwl-calendar-open-day-events>
         </div>
       </div>
@@ -71,7 +71,7 @@ export class CalendarMonthViewComponent implements OnChanges, OnInit, OnDestroy 
   /**
    * An array of events to display on view
    */
-  @Input() events: CalendarEvent[] = [];
+  @Input() events: Event[] = [];
 
   /**
    * Whether the events list for the day of the `viewDate` option is visible or not
@@ -112,7 +112,7 @@ export class CalendarMonthViewComponent implements OnChanges, OnInit, OnDestroy 
   /**
    * Called when the event title is clicked
    */
-  @Output() eventClicked: EventEmitter<{event: CalendarEvent}> = new EventEmitter<{event: CalendarEvent}>();
+  @Output() eventClicked: EventEmitter<{event: Event}> = new EventEmitter<{event: Event}>();
 
   
   /**
