@@ -6,20 +6,13 @@ import { MonthViewDay } from 'calendar-utils';
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
     <div class="cal-cell-top">
-      <span class="cal-day-badge" *ngIf="day.badgeTotal > 0">{{ day.badgeTotal }}</span>
-      <span class="cal-day-number">{{ day.date | calendarDate:'monthViewDayNumber':locale }}</span>
+    <span class="cal-day-number">{{ day.date | calendarDate:'monthViewDayNumber':locale }}</span>      
     </div>
     <div class="cal-events">
-      <span
-        class="cal-event"
-        *ngFor="let event of day.events"
-        [style.backgroundColor]="event.color.primary"
-        [ngClass]="event?.cssClass"
-        (mouseenter)="highlightDay.emit({event: event})"
-        (mouseleave)="unhighlightDay.emit({event: event})"
-        [mwlCalendarTooltip]="event | calendarEventTitle:'monthTooltip'"
-        [tooltipPlacement]="tooltipPlacement">
-      </span>
+      <div *ngFor="let event of day.events" [ngSwitch]="event.type">
+        <i *ngSwitchCase="'Training'" class="fa fa-crosshairs fa-2x" aria-hidden="true"></i>
+        <i *ngSwitchCase="'Competition'" class="fa fa-trophy fa-2x" aria-hidden="true"></i>
+      </div>
     </div>
   `,
   host: {

@@ -1,0 +1,27 @@
+<nav *ngIf="AuthServ.isLoggedIn | async" class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div ngbDropdown class="navbar-header">
+      <button type="button" class="navbar-toggle" (click)="isCollapsed = !isCollapsed"
+          [attr.aria-expanded]="!isCollapsed" >
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>                        
+      </button>
+      <a class="navbar-brand" href="#">{{title}}</a>
+    </div>
+    <div [ngbCollapse]="isCollapsed" class="collapse navbar-collapse" id="myNavbar">
+      <ul class="nav navbar-nav">
+        <li routerLinkActive="active" ><a routerLink="/cal" (click)="isCollapsed = !isCollapsed"><i class="fa fa-calendar-o"></i>  Agenda</a></li>
+        <li routerLinkActive="active"><a routerLink="/users" href="#" (click)="isCollapsed = !isCollapsed"><i class="fa fa-users"></i>  Membres</a></li>
+        <li routerLinkActive="active"><a routerLink="/stats" href="#" (click)="isCollapsed = !isCollapsed"><i class="fa fa-bar-chart"></i>  Stats</a></li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li routerLinkActive="active"><a routerLink="/profile" href="#" (click)="isCollapsed = !isCollapsed"><i class="fa fa-user"></i>  {{this.AuthServ.currentUser.fbName}}</a></li>
+        <li><a href="#" (click)="isCollapsed = !isCollapsed;AuthServ.logout();"><i class="fa fa-sign-out"></i>  Deconnexion</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+
+

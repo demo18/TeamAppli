@@ -7,10 +7,13 @@ import {
   transition,
   animate,
   Output,
-  EventEmitter
+  EventEmitter,
+  OnChanges
 } from '@angular/core';
 import { CalendarEvent,MonthViewDay } from 'calendar-utils';
 import { Subject } from 'rxjs/Subject';
+import { Event } from './../../event';
+import { Observable } from 'rxjs/Observable';
 
 @Component({
   selector: 'mwl-calendar-open-day-events',
@@ -18,16 +21,15 @@ import { Subject } from 'rxjs/Subject';
   template: `
     <div class="cal-open-day-events" [@collapse] *ngIf="isOpen">
       <h4>{{openDay.date|date:'d/M/y'}}</h4>  
-      <div
-        *ngFor="let event of events"
-        [ngClass]="event?.cssClass" >
-        <span class="cal-event" *ngIf="!isDetail" [style.backgroundColor]="event.color.primary"></span>
-        <mwl-calendar-event-title *ngIf="!isDetail"
-          [event]="event"
-          view="month"
-          (click)="eventClicked(event)">
-        </mwl-calendar-event-title>
-        <mwl-calendar-event-actions [event]="event"></mwl-calendar-event-actions>
+      <div style="display: inline-block;">
+        <div *ngFor="let event of events" [ngClass]="event?.cssClass" >
+          <mwl-calendar-event-title *ngIf="!isDetail"
+            [event]="event"
+            view="month"
+            (click)="eventClicked(event)">
+          </mwl-calendar-event-title>
+          <mwl-calendar-event-actions [event]="event"></mwl-calendar-event-actions>
+        </div>
       </div>
       <mwl-calendar-add-event *ngIf="!isDetail" [day]="openDay.date" [refresh]="refresh">
       </mwl-calendar-add-event>
@@ -47,7 +49,12 @@ import { Subject } from 'rxjs/Subject';
     ])
   ]
 })
-export class CalendarOpenDayEventsComponent {
+export class CalendarOpenDayEventsComponent implements OnChanges{
+
+  ngOnChanges(changes: any): void {
+      this.openDetail(false);
+      console.log("oncghange");
+  }
 
   @Input() isOpen: boolean = false;
 
@@ -57,10 +64,9 @@ export class CalendarOpenDayEventsComponent {
 
   @Input() refresh: Subject<any>;
 
-  isDetail:Boolean = false;
-  ev:Event;
+  isDetail: boolean;
 
- // @Output() eventClicked: EventEmitter<{event: Event}> = new EventEmitter<{event: Event}>();
+  ev:Event;
 
   eventClicked(event: Event): void {
     this.openDetail(true);

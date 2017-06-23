@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { EventsService } from './calendar/events.service';
+import { Component, OnInit } from '@angular/core';
+import { AuthService } from './_services/auth.service';
 import './rxjs-operators';
 
 @Component({
@@ -7,6 +7,22 @@ import './rxjs-operators';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent {
-  title = 'app works!';
+export class AppComponent implements OnInit{
+  constructor(private AuthServ: AuthService) {}
+  title = 'RNPPC Team Manager';
+  isCollapsed = true;
+  isLoggedIn;
+  ngOnInit() {
+    // this.AuthServ.isLogged().subscribe(
+    //                   data => {
+    //                     this.isLoggedIn = data;
+    //                   });
+  }
+  test() {
+    // this.AuthServ.isLogged().subscribe(
+    //                    data => this.isLoggedIn = data);
+  }
+  onLogOutClick(){
+    this.AuthServ.logout();
+  }
 }

@@ -1,0 +1,6 @@
+SERVER
+API crud : https://github.com/mevdschee/php-crud-api
+
+
+CLIENT
+angular cli: --base-href /TeamAppli/ (sous domaine TeamAppli)

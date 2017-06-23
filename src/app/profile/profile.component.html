@@ -1,0 +1,58 @@
+<div *ngIf="currentUser" class="general">
+  <h2>Mon profile</h2>
+  <h3>{{currentUser.fbName}}</h3>
+  
+  <div class="input-group col-xs-12 col-md-4">
+    <label for="nom">Nom</label>
+    <input type="text" class="form-control" id="nom"
+          required
+          [(ngModel)]="currentUser.nom" name="nom">
+  </div>
+  
+  <div class="input-group col-xs-12 col-md-4">
+    <label for="prenom">Prenom</label>
+    <input type="text" class="form-control" id="prenom"
+          required
+          [(ngModel)]="currentUser.prenom" name="prenom">
+  </div>
+  
+  <div class="input-group col-xs-12 col-md-4">
+    <label for="numJoueur">N° de maillot</label>
+    <input type="text" class="form-control" id="numJoueur"
+          required
+          [(ngModel)]="currentUser.numJoueur" name="numJoueur">
+  </div>
+  
+  <div class="input-group col-xs-12 col-md-4">
+    <label for="idLicence">ID licence</label>
+    <input type="text" class="form-control" id="idLicence"
+          required
+          [(ngModel)]="currentUser.licenceID" name="idLicence">
+  </div>
+  
+  <div class="input-group col-xs-12 col-md-4">
+    <label for="birthday">Date de naissance</label>
+    <input type="text" class="form-control" id="birthday"
+          required
+          [(ngModel)]="currentUser.birthday" name="birthday">
+  </div>
+  
+  <div class="input-group col-xs-12 col-md-4">
+    <label for="team">Team</label>
+    <select class="form-control"  id="team"
+            required
+            [(ngModel)]="currentUser.team" name="team">
+      <option *ngFor="let team of teams" [value]="team">{{team}}</option>
+    </select>
+  </div>
+  
+  <div class="input-group col-xs-12 col-md-4">
+    <label for="team">Catégorie</label>
+    <select class="form-control"  id="type"
+            required
+            [(ngModel)]="currentUser.type" name="type">
+      <option *ngFor="let type of types" [value]="type">{{type}}</option>
+    </select>
+  </div>
+  <div class="btn btn-primary" (click)="onClick()">Enregistrer</div>
+</div>

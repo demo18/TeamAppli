@@ -14,7 +14,7 @@ import { CalendarEventTitle as CalendarEventTitleProvider } from './providers/ca
 import { CalendarDateFormatter } from './providers/calendarDateFormatter.provider';
 import { CalendarComponent } from './calendar.component';
 import { CalendarAddEventsComponent } from './components/common/calendarAddEvents.component';
-import { EventsService } from './events.service';
+
 import { CalendarEventDetailComponent } from './components/common/calendarEventDetail.component';
 
 
@@ -35,8 +35,7 @@ import { CalendarEventDetailComponent } from './components/common/calendarEventD
   ],
   imports: [CommonModule, ResizableModule,FormsModule],
   exports: [CalendarMonthViewComponent, CalendarDate],
-  entryComponents: [CalendarTooltipWindowComponent],
-  providers:[EventsService]
+  entryComponents: [CalendarTooltipWindowComponent]
 })
 export class CalendarModule {
 

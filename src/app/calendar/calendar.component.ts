@@ -19,7 +19,7 @@ import { CalendarEvent, EventAction, MonthViewDay } from 'calendar-utils';
 import 'font-awesome/css/font-awesome.css';
 
 import { CalendarAddEventsComponent } from'./components/common/calendarAddEvents.component';
-import { EventsService } from './events.service';
+import { EventsService } from './../_services/events.service';
 import { Observable }     from 'rxjs/Observable';
 import { Event } from './event';
 
@@ -32,25 +32,33 @@ export class CalendarComponent implements OnInit{
 
   constructor( private EvServ: EventsService){}
 
-  ngOnInit() { this.test(); }
+  ngOnInit() { 
+
+    this.EvServ.getAll();
+
+    this.EvServ.events.subscribe(
+      data=> {
+        this.events = data;//.map(data.start => new Date(data.start));
+        this.events = data.map(function(x){
+          x.start = new Date(new Date(x.start.toString().replace(/-/g, "/")));
+          console.log("DATE "+x.start);
+          // console.log (new Date('2011-04-12'.replace(/-/g, "/")));
+          return x;
+        });
+
+        //this.events[0].start = new Date(this.events[0].start);
+        console.log(this.events);
+      }
+    );
+  }
 
   viewDate: Date = new Date();
   view: string = 'month';
-  events = this.EvServ.getEvents();
+ 
+  events:Event[]=[]; 
   errorMessage: any;
-
-  eventest:any;
-
-  test(){
-  this.EvServ.getEventsREST().subscribe(
-                       eventest => this.eventest = eventest,
-                       error =>  this.errorMessage = <any>error);
-  //JSON.stringify(this.EvServ.getEventsREST())  
-  console.log(this.eventest);
-    
-  }
-
-
+  
+  
   refresh: Subject<any> = new Subject();
   activeDayIsOpen: boolean = false;
  

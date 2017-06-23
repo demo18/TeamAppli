@@ -31,10 +31,13 @@ export const colors: any = {
 export class Event {
   constructor(
     public start: Date,
-    public title: string,
-    public color: EventColor,
+    public id?: any,
+    public title?: string,
+    public color?: any,
     public type?: string,
     public team?: string,
+    public lieu?: string,
+    public details?: string,
     public end?: Date,
     public actions?: EventAction[],
     public cssClass?: string,

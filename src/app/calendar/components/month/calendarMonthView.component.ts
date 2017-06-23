@@ -22,6 +22,7 @@ import {
 import { Subject } from 'rxjs/Subject';
 import { Subscription } from 'rxjs/Subscription';
 import isSameDay from 'date-fns/is_same_day';
+import { Event } from './../../event';
 
 @Component({
   selector: 'mwl-calendar-month-view',
@@ -57,6 +58,7 @@ import isSameDay from 'date-fns/is_same_day';
         </div>
       </div>
     </div>
+     
   `
 })
 export class CalendarMonthViewComponent implements OnChanges, OnInit, OnDestroy {
@@ -146,7 +148,6 @@ export class CalendarMonthViewComponent implements OnChanges, OnInit, OnDestroy 
   constructor(private cdr: ChangeDetectorRef, @Inject(LOCALE_ID) locale: string) {
     this.locale = locale;
   }
-
   /**
    * @private
    */

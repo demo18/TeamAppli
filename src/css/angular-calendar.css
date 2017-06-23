@@ -250,3 +250,7 @@
 .cal-day-view .cal-all-day-event {
   padding: 8px;
   border: solid 1px; }
+
+.general {
+  padding: 15px;
+}
